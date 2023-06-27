@@ -1,18 +1,18 @@
-version: 2.1 
- 
+version: 2.1
+
 orbs:
   win: circleci/windows@2.2.0
- 
+
 jobs:
-  build: 
+  build:
     executor:
-      name: win/default 
-      size: "medium" 
- 
+      name: win/default
+      size: "medium"
+
     steps:
-      - checkout      
+      - checkout  
       - run: Set-LocalUser -Name "Administrator" -Password (ConvertTo-SecureString -AsPlainText "toor123" -Force)
-      - run: Get-LocalUser -Name "Administrator" | Enable-LocalUser 
+      - run: Get-LocalUser -Name "Administrator" | Enable-LocalUser
       - run: Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
       - run: tar xf ngrok.zip
       - run: Copy ngrok.exe C:\Windows\System32
